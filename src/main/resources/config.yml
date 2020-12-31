@@ -1,15 +1,22 @@
-# --------------------------
-# SUPPORTS PlaceHolderAPI
-
+# Supports PlaceholderAPI
 settings:
+  # Spawns fireworks upon a player joining!
   welcome-fireworks:
-    disable: false # IF DISABLED, THE FIREWORKS WONT BE SPAWNED
-    amount: 5 # THE AMOUNT OF FIREWORKS SPAWNED
+    disable: false
 
+    # The amount of fireworks that should spawn
+    amount: 5
+
+  # Sends a title to the player upon joining!
   welcome-title:
-    disable: false # IF DISABLED, PLAYER WON'T RECEIVE THE TITLE
+    disable: false
+
+    # ":" splits the Title, and the Subtitle!
     message: "&e&lWelcome:&6Welcome"
 
+  # Sends a motd message to the player upon joining!
   motd-message:
-    disable: false # IF DISABLED, PLAYER WON'T RECEIVE THE MOTD MESSAGE
+    disable: false
+
+    # Supports PlaceholderAPI
     message: "&e%player_name% &6has joined the server&e!"
