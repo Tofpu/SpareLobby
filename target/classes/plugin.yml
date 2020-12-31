@@ -1,0 +1,5 @@
+name: ExtraLobby
+version: 1.0-SNAPSHOT
+main: me.tofpu.extralobby.ExtraLobby
+api-version: 1.16
+authors: [ Tofpu ]

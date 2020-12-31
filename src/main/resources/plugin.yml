@@ -1,0 +1,8 @@
+name: ExtraLobby
+version: ${project.version}
+main: me.tofpu.extralobby.ExtraLobby
+api-version: 1.13
+authors: [ Tofpu ]
+softdepend:
+  - PlaceholderAPI
+

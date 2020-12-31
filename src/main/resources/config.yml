@@ -1,0 +1,15 @@
+# --------------------------
+# SUPPORTS PlaceHolderAPI
+
+settings:
+  welcome-fireworks:
+    disable: false # IF DISABLED, THE FIREWORKS WONT BE SPAWNED
+    amount: 5 # THE AMOUNT OF FIREWORKS SPAWNED
+
+  welcome-title:
+    disable: false # IF DISABLED, PLAYER WON'T RECEIVE THE TITLE
+    message: "&e&lWelcome:&6Welcome"
+
+  motd-message:
+    disable: false # IF DISABLED, PLAYER WON'T RECEIVE THE MOTD MESSAGE
+    message: "&e%player_name% &6has joined the server&e!"
