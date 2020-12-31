@@ -14,9 +14,9 @@ public final class ExtraLobby extends JavaPlugin {
         isPlaceholderAPIHooked = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
         if (!isPlaceholderAPIHooked) {
-            getLogger().warning("Could not find PlaceholderAPI! This plugin is highly recommended.");
+            getLogger().warning("Could not find PlaceholderAPI! It's recommended to install this plugin for extra functionality.");
         }
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
     }
 
     @Override

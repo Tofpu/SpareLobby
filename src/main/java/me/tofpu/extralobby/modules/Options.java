@@ -2,7 +2,7 @@ package me.tofpu.extralobby.modules;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.tofpu.extralobby.ExtraLobby;
-import me.tofpu.extralobby.OptionsType;
+import me.tofpu.extralobby.utils.ChatUtil;
 
 public class Options {
     private final boolean disable;
@@ -15,7 +15,7 @@ public class Options {
         this.disable = EXTRA_LOBBY.getConfig().getBoolean(Config.getConfigPath() + path + ".disable");
         this.amount = 0;
 
-        String cache = EXTRA_LOBBY.getConfig().getString(Config.getConfigPath() + path + ".message");
+        String cache = ChatUtil.colorize(EXTRA_LOBBY.getConfig().getString(Config.getConfigPath() + path + ".message"));
         if (ExtraLobby.isPlaceholderAPIHooked()){
             this.message = PlaceholderAPI.setPlaceholders(null, cache);
             return;
@@ -32,7 +32,7 @@ public class Options {
         }
         this.amount = 0;
 
-        String cache = EXTRA_LOBBY.getConfig().getString(Config.getConfigPath() + path + ".message");
+        String cache = ChatUtil.colorize(EXTRA_LOBBY.getConfig().getString(Config.getConfigPath() + path + ".message"));
         if (ExtraLobby.isPlaceholderAPIHooked()){
             this.message = PlaceholderAPI.setPlaceholders(null, cache);
             return;

@@ -1,7 +1,5 @@
 package me.tofpu.extralobby.modules;
 
-import me.tofpu.extralobby.OptionsType;
-
 public enum Config {
 
     WELCOME_FIREWORKS(new Options("welcome-fireworks", OptionsType.INTEGER)),

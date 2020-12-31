@@ -1,4 +1,4 @@
-package me.tofpu.extralobby;
+package me.tofpu.extralobby.modules;
 
 public enum OptionsType {
     INTEGER,
