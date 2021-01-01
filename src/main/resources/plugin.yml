@@ -5,4 +5,10 @@ api-version: 1.13
 authors: [ Tofpu ]
 softdepend:
   - PlaceholderAPI
+commands:
+  extralobby:
+    aliases:
+      - el
+      - elobby
+    permission: extralobby.use
 
