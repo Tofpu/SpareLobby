@@ -1,6 +1,9 @@
 # Supports PlaceholderAPI
 settings:
   # Spawns fireworks upon a player joining!
+  update-notifications:
+    disable: false
+
   welcome-fireworks:
     disable: false
 
@@ -19,4 +22,4 @@ settings:
     disable: false
 
     # Supports PlaceholderAPI
-    message: "&e%player_name% &6has joined the server&e!"
+    message: "&eWelcome to the server, &6%player_name%&e!"

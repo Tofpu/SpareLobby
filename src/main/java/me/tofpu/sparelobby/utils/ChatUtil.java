@@ -1,4 +1,4 @@
-package me.tofpu.extralobby.utils;
+package me.tofpu.sparelobby.utils;
 
 import org.bukkit.ChatColor;
 

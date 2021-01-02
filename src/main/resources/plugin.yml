@@ -1,14 +1,14 @@
-name: ExtraLobby
+name: SpareLobby
 version: ${project.version}
-main: me.tofpu.extralobby.ExtraLobby
+main: me.tofpu.sparelobby.SpareLobby
 api-version: 1.13
 authors: [ Tofpu ]
 softdepend:
   - PlaceholderAPI
 commands:
-  extralobby:
+  sparelobby:
     aliases:
-      - el
-      - elobby
-    permission: extralobby.use
+      - sl
+      - slobby
+    permission: sparelobby.use
 
