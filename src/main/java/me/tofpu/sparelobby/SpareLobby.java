@@ -21,7 +21,7 @@ public final class SpareLobby extends JavaPlugin {
         isPlaceholderAPIHooked = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
         new Metrics(this, 9856);
-        updater = new SpigotUpdater(this, "https://www.spigotmc.org/resources/extralobby-an-addon-for-lobby-plugins.", 87363, !Config.UPDATE_NOTIFICATIONS.getOptions().isDisable());
+        updater = new SpigotUpdater(this, "https://www.spigotmc.org/resources/sparelobby-an-addon-for-lobby-plugins.", 87363, !Config.UPDATE_NOTIFICATIONS.getOptions().isDisable());
 
         registerCommands();
         registerListeners();
