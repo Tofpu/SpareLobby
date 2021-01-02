@@ -8,6 +8,6 @@ public class ChatUtil {
     }
 
     public static String prefixColorize(String content){
-        return colorize("&8[&eExtra&6Lobby&8]&r " + content);
+        return colorize("&8[&eSpare&6Lobby&8]&r " + content);
     }
 }

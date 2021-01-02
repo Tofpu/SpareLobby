@@ -2,16 +2,16 @@ package me.tofpu.sparelobby;
 
 import me.tofpu.sparelobby.commands.CommandManager;
 import me.tofpu.sparelobby.listeners.PlayerJoinListener;
+import me.tofpu.sparelobby.modules.config.Config;
+import me.tofpu.spigotupdater.SpigotUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.inventivetalent.update.spiget.SpigetUpdate;
-import org.inventivetalent.update.spiget.UpdateCallback;
-import org.inventivetalent.update.spiget.comparator.VersionComparator;
 
 public final class SpareLobby extends JavaPlugin {
     private static boolean isPlaceholderAPIHooked = false;
-    private boolean updateAvailable;
+    private SpigotUpdater updater;
 
     @Override
     public void onEnable() {
@@ -21,26 +21,8 @@ public final class SpareLobby extends JavaPlugin {
         isPlaceholderAPIHooked = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
         new Metrics(this, 9856);
-        SpigetUpdate updateChecker = new SpigetUpdate(this, 87363);
-        updateChecker.setVersionComparator(VersionComparator.SEM_VER);
+        updater = new SpigotUpdater(this, "https://www.spigotmc.org/resources/extralobby-an-addon-for-lobby-plugins.", 87363, !Config.UPDATE_NOTIFICATIONS.getOptions().isDisable());
 
-        updateChecker.checkForUpdate(new UpdateCallback() {
-            @Override
-            public void updateAvailable(String s, String s1, boolean b) {
-                updateAvailable = true;
-                getLogger().warning("You are using an older version of SpareLobby (" + s1 + ")");
-                getLogger().warning("It's highly recommended to update as there may be new fixes/features!");
-            }
-
-            @Override
-            public void upToDate() {
-                updateAvailable = false;
-            }
-        });
-
-        if (!isPlaceholderAPIHooked) {
-            getLogger().warning("Could not find PlaceholderAPI! It's recommended to install this plugin for extra functionality.");
-        }
         registerCommands();
         registerListeners();
 
@@ -56,14 +38,16 @@ public final class SpareLobby extends JavaPlugin {
     }
 
     public void registerListeners(){
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        final PluginManager pluginManager = Bukkit.getPluginManager();
+
+        pluginManager.registerEvents(new PlayerJoinListener(this), this);
     }
 
     public static boolean isPlaceholderAPIHooked() {
         return isPlaceholderAPIHooked;
     }
 
-    public boolean isUpdateAvailable() {
-        return updateAvailable;
+    public SpigotUpdater getUpdater() {
+        return updater;
     }
 }

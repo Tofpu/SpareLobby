@@ -1,9 +1,10 @@
-# Supports PlaceholderAPI
+# All messages do support PlaceholderAPI!
 settings:
-  # Spawns fireworks upon a player joining!
+  # Notifies operators that an update is available!
   update-notifications:
     disable: false
 
+  # Spawns fireworks upon a player joining!
   welcome-fireworks:
     disable: false
 
@@ -15,11 +16,11 @@ settings:
     disable: false
 
     # ":" splits the Title, and the Subtitle!
-    message: "&e&lWelcome:&6Welcome"
+    message: "&e&lWelcome %player_name%:&6to the server!"
 
   # Sends a motd message to the player upon joining!
   motd-message:
     disable: false
 
-    # Supports PlaceholderAPI
+    # Player receive this message upon joining!
     message: "&eWelcome to the server, &6%player_name%&e!"

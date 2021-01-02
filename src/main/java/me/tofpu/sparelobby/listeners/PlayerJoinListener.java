@@ -3,7 +3,6 @@ package me.tofpu.sparelobby.listeners;
 import me.tofpu.sparelobby.SpareLobby;
 import me.tofpu.sparelobby.modules.config.Config;
 import me.tofpu.sparelobby.modules.config.options.Options;
-import me.tofpu.sparelobby.utils.ChatUtil;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -44,17 +43,16 @@ public class PlayerJoinListener implements Listener {
         }
 
         if (!welcomeTitle.isDisable()) {
-            final String[] args = welcomeTitle.getMessage().split(":");
+            final String[] args = welcomeTitle.getMessage(player).split(":");
             player.sendTitle(args[0], args[1]);
         }
 
         if (!motdMessage.isDisable()) {
-            player.sendMessage(motdMessage.getMessage());
+            player.sendMessage(motdMessage.getMessage(player));
         }
 
-        if (player.isOp() && spareLobby.isUpdateAvailable()){
-            player.sendMessage(ChatUtil.prefixColorize("&eYou are using an older version of SpareLobby &8(&7https://www.spigotmc.org/resources/sparelobby-an-addon-for-lobby-plugins.87363/&8)"));
-            player.sendMessage(ChatUtil.prefixColorize("&eIt's highly recommended to update as there may be new fixes/features."));
+        if (!updateNotfi.isDisable() && spareLobby.getUpdater().isUpdateAvailable() && player.isOp()){
+            player.sendMessage(spareLobby.getUpdater().sendMessage());
         }
     }
 }
