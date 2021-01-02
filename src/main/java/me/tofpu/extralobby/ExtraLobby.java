@@ -2,6 +2,7 @@ package me.tofpu.extralobby;
 
 import me.tofpu.extralobby.commands.CommandManager;
 import me.tofpu.extralobby.listeners.PlayerJoinListener;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,8 @@ public final class ExtraLobby extends JavaPlugin {
         // Plugin startup logic
         saveDefaultConfig();
         isPlaceholderAPIHooked = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+
+        new Metrics(this, 9855);
 
         if (!isPlaceholderAPIHooked) {
             getLogger().warning("Could not find PlaceholderAPI! It's recommended to install this plugin for extra functionality.");
