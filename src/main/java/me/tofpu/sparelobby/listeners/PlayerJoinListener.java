@@ -3,6 +3,7 @@ package me.tofpu.sparelobby.listeners;
 import me.tofpu.sparelobby.SpareLobby;
 import me.tofpu.sparelobby.modules.config.Config;
 import me.tofpu.sparelobby.modules.config.options.Options;
+import me.tofpu.sparelobby.utils.ChatUtil;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -52,7 +53,8 @@ public class PlayerJoinListener implements Listener {
         }
 
         if (!updateNotfi.isDisable() && spareLobby.getUpdater().isUpdateAvailable() && player.isOp()){
-            player.sendMessage(spareLobby.getUpdater().sendMessage());
+            player.sendMessage(ChatUtil.prefixColorize("&7You are currently running an older version of &fSpareLobby&7!"));
+            player.sendMessage(ChatUtil.prefixColorize(String.format("&7You can download the latest version at: &f%s", spareLobby.getUrl())));
         }
     }
 }
