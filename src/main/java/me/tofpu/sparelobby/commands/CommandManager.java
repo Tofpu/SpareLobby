@@ -6,8 +6,14 @@ import me.tofpu.sparelobby.utils.ChatUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.util.StringUtil;
 
-public class CommandManager implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class CommandManager implements CommandExecutor, TabCompleter {
     public final SpareLobby spareLobby;
 
     public CommandManager(SpareLobby spareLobby) {
@@ -23,13 +29,14 @@ public class CommandManager implements CommandExecutor {
         }
         arguments(sender, args);
 
+
         return false;
     }
 
     public void arguments(CommandSender sender, String[] args){
         if (args[0].equalsIgnoreCase("help")){
-            sender.sendMessage(ChatUtil.prefixColorize("&eExtraLobby Commands:"));
-            sender.sendMessage(ChatUtil.prefixColorize(" &8» &e/sparelobby reload"));
+            sender.sendMessage(ChatUtil.prefixColorize("&eSparelobby Commands:"));
+            sender.sendMessage(ChatUtil.prefixColorize(" &8» &6/sparelobby reload"));
             return;
         }
 
@@ -41,5 +48,23 @@ public class CommandManager implements CommandExecutor {
             sender.sendMessage(ChatUtil.prefixColorize("&eYou have successfully reloaded the config.yml!"));
             return;
         }
+
+        sender.sendMessage(ChatUtil.prefixColorize("&eThis command does not exist!"));
+        sender.sendMessage(ChatUtil.prefixColorize("&eType &6/sparelobby help &efor further help!"));
+        return;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> completions = new ArrayList<>();
+        List<String> commands = new ArrayList<>();
+
+        if (args.length == 1) {
+            commands.add("help");
+            commands.add("reload");
+            StringUtil.copyPartialMatches(args[0], commands, completions);
+        }
+        Collections.sort(completions);
+        return completions;
     }
 }
