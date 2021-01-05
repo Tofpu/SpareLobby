@@ -7,10 +7,10 @@ import me.tofpu.spigotupdater.updated.callback.CallBack;
 import me.tofpu.spigotupdater.updated.utils.SpigotUtil;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.IOException;
 import java.util.logging.Level;
 
 public final class SpareLobby extends JavaPlugin {
@@ -31,19 +31,15 @@ public final class SpareLobby extends JavaPlugin {
         this.updater = new Updater(this, 87363);
         updater.result(new CallBack() {
             @Override
-            public void olderVersion(int currentVersion, int latestVersion) {
-                getLogger().log(Level.WARNING, String.format("You're running an older version of %s!", getDescription().getName()));
-                try {
-                    url = SpigotUtil.getResultSync("https://raw.githubusercontent.com/Tofpu/SpareLobby/main/url");
-                    getLogger().log(Level.WARNING, String.format("You can download the latest version at: %s", url));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void olderVersion(JavaPlugin javaPlugin, int currentVersion, int latestVersion) {
+                super.olderVersion(javaPlugin, currentVersion, latestVersion);
+                url = SpigotUtil.getResultAsync("https://raw.githubusercontent.com/Tofpu/SpareLobby/main/url");
+                getLogger().log(Level.WARNING, String.format("You can download the latest version at: %s", url));
             }
 
             @Override
-            public void isUpdated(int latestVersion) {
-                getLogger().log(Level.INFO, "You are running the latest version!");
+            public void isUpdated(JavaPlugin javaPlugin, int latestVersion) {
+                super.isUpdated(javaPlugin, latestVersion);
             }
         });
 
@@ -58,12 +54,15 @@ public final class SpareLobby extends JavaPlugin {
     }
 
     public void registerCommands(){
-        getCommand("sparelobby").setExecutor(new CommandManager(this));
+        final PluginCommand sparelobby = Bukkit.getPluginCommand("sparelobby");
+        final CommandManager commandManager = new CommandManager(this);
+
+        sparelobby.setExecutor(commandManager);
+        sparelobby.setTabCompleter(commandManager);
     }
 
     public void registerListeners(){
         final PluginManager pluginManager = Bukkit.getPluginManager();
-
         pluginManager.registerEvents(new PlayerJoinListener(this), this);
     }
 
