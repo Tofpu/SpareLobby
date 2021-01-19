@@ -4,6 +4,13 @@ settings:
   update-notifications:
     disable: false
 
+  # An option to disable the vanilla join message!
+  default-join-message:
+    disable: false
+
+    # A message that everyone in the server receives!
+    message: "&8[&a&l+&8] &6%player% &ehas joined the server!"
+
   # Spawns fireworks upon a player joining!
   welcome-fireworks:
     disable: false

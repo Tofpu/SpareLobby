@@ -21,10 +21,21 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
         final Player player = event.getPlayer();
+
         final Options updateNotfi = Config.UPDATE_NOTIFICATIONS.getOptions();
+        final Options defaultJoinMessage = Config.DEFAULT_JOIN_MESSAGE.getOptions();
         final Options welcomeTitle = Config.WELCOME_TITLE.getOptions();
         final Options welcomeFireworks = Config.WELCOME_FIREWORKS.getOptions();
         final Options motdMessage = Config.MOTD_MESSAGE.getOptions();
+
+        if (!defaultJoinMessage.isDisable()){
+            String message = defaultJoinMessage.getMessage(player);
+            if (!message.isEmpty()) {
+                event.setJoinMessage(message);
+            } else {
+                event.setJoinMessage(null);
+            }
+        }
 
         if (!welcomeFireworks.isDisable()) {
             final int[] i = new int[1];
