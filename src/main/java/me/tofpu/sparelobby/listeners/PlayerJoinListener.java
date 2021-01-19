@@ -23,18 +23,24 @@ public class PlayerJoinListener implements Listener {
         final Player player = event.getPlayer();
 
         final Options updateNotfi = Config.UPDATE_NOTIFICATIONS.getOptions();
+        final Options vanillaJoinMessage = Config.VANILLA_JOIN_MESSAGE.getOptions();
         final Options defaultJoinMessage = Config.DEFAULT_JOIN_MESSAGE.getOptions();
         final Options welcomeTitle = Config.WELCOME_TITLE.getOptions();
         final Options welcomeFireworks = Config.WELCOME_FIREWORKS.getOptions();
         final Options motdMessage = Config.MOTD_MESSAGE.getOptions();
 
-        if (!defaultJoinMessage.isDisable()){
+        if (!updateNotfi.isDisable() && spareLobby.getUpdater().isUpdateAvailable() && player.isOp()){
+            player.sendMessage(ChatUtil.prefixColorize("&7You are currently running an older version of &fSpareLobby&7!"));
+            player.sendMessage(ChatUtil.prefixColorize(String.format("&7You can download the latest version at: &f%s", spareLobby.getUrl())));
+        }
+
+        if (!vanillaJoinMessage.isDisable()){
+            event.setJoinMessage(null);
+        }
+
+        if (!defaultJoinMessage.isDisable()) {
             String message = defaultJoinMessage.getMessage(player);
-            if (!message.isEmpty()) {
-                event.setJoinMessage(message);
-            } else {
-                event.setJoinMessage(null);
-            }
+            if (!message.isEmpty()) event.setJoinMessage(message);
         }
 
         if (!welcomeFireworks.isDisable()) {
@@ -61,11 +67,6 @@ public class PlayerJoinListener implements Listener {
 
         if (!motdMessage.isDisable()) {
             player.sendMessage(motdMessage.getMessage(player));
-        }
-
-        if (!updateNotfi.isDisable() && spareLobby.getUpdater().isUpdateAvailable() && player.isOp()){
-            player.sendMessage(ChatUtil.prefixColorize("&7You are currently running an older version of &fSpareLobby&7!"));
-            player.sendMessage(ChatUtil.prefixColorize(String.format("&7You can download the latest version at: &f%s", spareLobby.getUrl())));
         }
     }
 }

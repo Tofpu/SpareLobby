@@ -5,6 +5,10 @@ settings:
     disable: false
 
   # An option to disable the vanilla join message!
+  disable-vanilla-message:
+    disable: false
+
+  # Replaces the default join-message with this!
   default-join-message:
     disable: false
 
